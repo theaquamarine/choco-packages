@@ -1,13 +1,13 @@
-﻿
-Note: Include this file if including binaries you have the right to distribute.
-Otherwise delete. this file. If you are the software author, you can change this
-mention you are the author of the software.
-
-===DELETE ABOVE THIS LINE AND THIS LINE===
-
-VERIFICATION
+﻿VERIFICATION
 Verification is intended to assist the Chocolatey moderators and community
 in verifying that this package's contents are trustworthy.
 
-<Include details of how to verify checksum contents>
-<If software vendor, explain that here - checksum verification instructions are optional>
+Package can be verified by going to the project's GitHub releases page,
+
+https://github.com/tummychow/git-absorb/releases
+
+Finding the correct version, and downloading the MSVC build.
+
+https://github.com/tummychow/git-absorb/releases/download/0.6.10/git-absorb-0.6.10-x86_64-pc-windows-msvc.tar.gz
+
+After expanding the archive, the file's hash can be checked using 'Get-FileHash'
