@@ -4,10 +4,12 @@ in verifying that this package's contents are trustworthy.
 
 Package can be verified by going to the project's GitHub releases page,
 
-https://github.com/tummychow/git-absorb/releases
+Release: https://github.com/tummychow/git-absorb/releases
 
-Finding the correct version, and downloading the MSVC build.
+Download the `windows-msvc` asset.
 
-https://github.com/tummychow/git-absorb/releases/download/0.6.10/git-absorb-0.6.10-x86_64-pc-windows-msvc.tar.gz
+Asset: https://github.com/tummychow/git-absorb/releases/download/0.6.10/git-absorb-0.6.10-x86_64-pc-windows-msvc.tar.gz
 
 After expanding the archive, the file's hash can be checked using 'Get-FileHash'
+
+Checksum: 17B2CF819EC11D6EABCAC573C0C79F2D7F52E32833367B8DD4D0DAAA6626D753AECDBD1579239B300A80598050293BC7DCA2C8B8166630845DC60213F9A70D0A
