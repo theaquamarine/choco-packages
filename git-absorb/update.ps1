@@ -48,4 +48,6 @@ function global:au_GetLatest {
     }
 }
 
+Push-Location $PSScriptRoot
 update -ChecksumFor none
+Pop-Location
