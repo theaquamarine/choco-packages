@@ -4,7 +4,7 @@
   <metadata>
     <id>git-absorb</id>
     <version>0.6.10</version>
-    <packageSourceUrl>https://github.com/theaquamarine/</packageSourceUrl>
+    <packageSourceUrl>https://github.com/theaquamarine/choco-packages</packageSourceUrl>
     <owners>theaquamarine</owners>
     <title>git-absorb</title>
     <authors>Stephen Jung</authors>
