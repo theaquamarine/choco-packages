@@ -38,6 +38,24 @@ Describe "git-absorb" {
 		It 'did not error' {
 			$out.Error | Should -BeNullOrEmpty
 		}
+
+		It 'has a license file' {
+			(Join-Path $PSScriptRoot 'tools/LICENSE*') | Should -Exist
+		}
+		
+		It 'has a verification file' {
+			(Join-Path $PSScriptRoot 'tools/VERIFICATION*') | Should -Exist
+		}
+		
+		It 'has an executable' {
+			(Join-Path $PSScriptRoot 'tools/*.exe') | Should -Exist
+		}
+
+		It 'has a description <4k characters' {
+			[xml]$xml = Get-Content $nuspec
+			$xml.package.metadata.description.InnerText.Length | Should -BeLessThan 4000
+
+		}
 		
 		It 'created a .nupkg' {
 			$nupkg | Should -Exist
