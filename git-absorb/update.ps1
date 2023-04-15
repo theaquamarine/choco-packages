@@ -28,7 +28,24 @@ function global:au_BeforeUpdate {
 
     Move-Item -Path (Join-Path $folder 'git-absorb.exe') -Destination (Join-Path $PSScriptRoot 'tools') -Force
     Move-Item -Path (Join-Path $folder 'LICENSE.md') -Destination (Join-Path $PSScriptRoot 'tools') -Force
-    # Move-Item -Path (Join-Path $folder 'README.md') -Destination $PSScriptRoot -Force
+    
+    #region readme
+    # nuspec descriptions must be <4k chars, so remove some sections from readme
+    # Move-Item -Path  -Destination $PSScriptRoot -Force
+    $file = (Join-Path $folder 'README.md')
+    $toRemove = 'Installing', 'Compiling from Source', 'How it works (roughly)', 'Configuration', 'TODO'
+
+    $sections = Select-String -Path $file -Pattern '^(?:#{1,2}\s+)(?<section>.*$)' | select @{n='Name';e={$_.Line -replace '^#*\s*'}}, @{n='Start';e={$_.LineNumber-1}}
+
+    for ($i = 0; $i -lt $sections.Length; $i++) {
+        Add-Member -InputObject $sections[$i] -MemberType NoteProperty -Name End -Value (($sections[$i+1].Start)-1)
+    }
+
+    $lines = $sections | ? Name -NotIn $toRemove | % {(Get-Content $file)[($_.Start)..($_.End)]} 
+
+    # join manually and use -NoNewLine to avoid trailing newline
+    Set-Content (Join-Path $PSScriptRoot README.md) -Value ($lines -join([System.Environment]::NewLine)) -NoNewline -Encoding utf8
+    #endregion readme
 
     Remove-Item *.tar.gz
     Remove-Item -Recurse $folder
