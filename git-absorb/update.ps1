@@ -6,7 +6,7 @@ function global:au_SearchReplace {
             "(\<releaseNotes\>).*?(\</releaseNotes\>)" = "`${1}$($Latest.ReleaseNotes)`$2"
         }
 
-        ".\legal\VERIFICATION.txt" = @{
+        ".\tools\VERIFICATION.txt" = @{
           "(?i)(Release:\s*).*"            = "Release: $($Latest.ReleaseNotes)"
           "(?i)(Asset:\s*).*" = "Asset: $($Latest.URL64)"
           "(?i)(Checksum:\s*).*"        = "Checksum: $($Latest.Checksum64)"
@@ -27,8 +27,8 @@ function global:au_BeforeUpdate {
     $Latest.Checksum64 = Get-FileHash (Join-Path $folder 'git-absorb.exe') -Algorithm SHA512 | Select-Object -ExpandProperty Hash
 
     Move-Item -Path (Join-Path $folder 'git-absorb.exe') -Destination (Join-Path $PSScriptRoot 'tools') -Force
-    Move-Item -Path (Join-Path $folder 'LICENSE.md') -Destination (Join-Path $PSScriptRoot 'legal') -Force
-    Move-Item -Path (Join-Path $folder 'README.md') -Destination $PSScriptRoot -Force
+    Move-Item -Path (Join-Path $folder 'LICENSE.md') -Destination (Join-Path $PSScriptRoot 'tools') -Force
+    # Move-Item -Path (Join-Path $folder 'README.md') -Destination $PSScriptRoot -Force
 
     Remove-Item *.tar.gz
     Remove-Item -Recurse $folder
