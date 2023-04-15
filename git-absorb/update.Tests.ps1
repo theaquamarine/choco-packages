@@ -28,7 +28,7 @@ Describe "git-absorb" {
 			(Get-Content $nuspec) -replace '<version>[\d\.]*</version>','<version>0.0.0</version>' | Set-Content $nuspec
 			[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments',
 				'out', Justification = 'Used outside block')]
-			$out = . (Join-Path $PSScriptRoot update.ps1)
+			$out = . (Join-Path $PSScriptRoot update.ps1) -NoCheckChocoVersion
 		}
 
 		It 'updates' {

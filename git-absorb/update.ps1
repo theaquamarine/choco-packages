@@ -1,3 +1,7 @@
+param (
+    [switch]$NoCheckChocoVersion
+)
+
 Import-Module AU
 
 function global:au_SearchReplace {
@@ -66,5 +70,5 @@ function global:au_GetLatest {
 }
 
 Push-Location $PSScriptRoot
-update -ChecksumFor none
+update -ChecksumFor none -NoCheckChocoVersion:$NoCheckChocoVersion
 Pop-Location
